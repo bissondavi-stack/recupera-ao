@@ -1,0 +1,57 @@
+import time
+import os 
+from cadastro_alunos import *
+from remover_alunos import *
+
+
+while True:
+     print("\n|======================================================|"
+                         "\n|-------------------SISTEMA ESCOLAR--------------------|"
+                         "\n|======================================================|\n")
+
+     print("              ===========================")
+     print("              |  [1] -  Cadastrar aluno  |")
+     print("              |========================= |")
+     print("              |  [2] -  Listar alunos    |")
+     print("              |========================= |")
+     print("              |  [3] -  Remover aluno    |")
+     print("              |========================= |")
+     print("              |  [4] -  Editar aluno     |")
+     print("              |========================= |") 
+     print("              |  [0] -  Sair             |")
+     print("              ============================")
+
+
+               
+          
+     op = input("Escolha uma opção: ")
+
+     if op == "1":
+          cadastrar_aluno()
+                    
+     elif op == "2":
+          listar_alunos()
+
+     elif op == "3":
+          remover_aluno()
+
+     elif op == "4":
+          editar_alunos()
+
+     elif op == "0":
+                    print("Até a proxima, Fique com o sans...")
+                    print("░░░░░▄▄▀▀▀▀▀▀▀▀▀▄▄░░░░░")
+                    print("░░░░█░░░░░░░░░░░░░█░░░░")
+                    print("░░░█░░░░░░░░░░▄▄▄░░█░░░")
+                    print("░░░█░░▄▄▄░░▄░░███░░█░░░")
+                    print("░░░▄█░▄░░░▀▀▀░░░▄░█▄░░░")
+                    print("░░░█░░▀█▀█▀█▀█▀█▀░░█░░░")
+                    print("░░░▄██▄▄▀▀▀▀▀▀▀▄▄██▄░░░")
+                    print("░▄█░█▀▀█▀▀▀█▀▀▀█▀▀█░█▄░")
+                    break
+
+     else:
+          print("opção invalida")
+
+
+
