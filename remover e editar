@@ -1,0 +1,65 @@
+import json 
+from cadastro_alunos import *
+
+def remover_aluno():
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+            alunos = json.load(arquivo)
+        
+            print("\n=== Alunos Cadastrados ===")
+            for i, aluno in enumerate(alunos, 1):
+                print(f"{i} - {aluno['nome']} (Turma: {aluno['turma']})")
+            
+            nome_remover = input("\nDigite o nome do aluno que deseja remover: ").strip()
+            
+            alunos_novos = [aluno for aluno in alunos if aluno["nome"].lower() != nome_remover.lower()]
+            
+            if len(alunos_novos) == len(alunos):
+                print("❌ Aluno não encontrado!")
+            else:
+                with open("dados.json", "w", encoding="utf-8") as arquivo:
+                    json.dump(alunos_novos, arquivo, ensure_ascii=False, indent=4)
+                print(f"✅ Aluno '{nome_remover}' removido com sucesso!")
+
+
+def editar_alunos():
+    try:
+        with open("dados.json", "r", encoding="utf-8") as arquivo:
+            alunos = json.load(arquivo)
+        
+        if not alunos:
+            print("Não há alunos para editar.")
+            return
+            
+        listar_alunos() 
+        
+        try:
+            num = int(input("\nNúmero do aluno para editar: ")) - 1
+            if num < 0 or num >= len(alunos):
+                print("Número inválido!")
+                return
+        except:
+            print("Digite um número válido!")
+            return
+        
+        aluno = alunos[num]
+        
+        print(f"\nEditando aluno: {aluno.get('nome', 'Sem nome')}")
+        
+        aluno['nome'] = input(f"Nome [{aluno.get('nome', '')}]: ").strip() or aluno.get('nome', '')
+        
+        aluno['materia'] = input(f"Matéria [{aluno.get('materia', '')}]: ").strip() or aluno.get('materia', '')
+        
+        aluno['nota'] = input(f"Nota [{aluno.get('nota', '')}]: ").strip() or aluno.get('nota', '')
+        
+        aluno['bimestre'] = input(f"Bimestre [{aluno.get('bimestre', '')}]: ").strip() or aluno.get('bimestre', '')
+
+        with open("dados.json", "w", encoding="utf-8") as arquivo:
+            json.dump(alunos, arquivo, indent=4, ensure_ascii=False)
+            
+        print(" Aluno editado com sucesso!")
+        
+    except FileNotFoundError:
+        print("Arquivo 'dados.json' não encontrado.")
+    except Exception as e:
+        print(f"Erro: {e}")
+
